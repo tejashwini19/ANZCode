@@ -1,14 +1,12 @@
-package com.infosys.anz.controller;
-
+package com.infosys.anz.serviceTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,8 +20,7 @@ import com.infosys.anz.service.AccountsService;
 
 
 @RunWith(SpringRunner.class)
-//@WebMvcTest(value = AccountsController.class, secure = false)
-public class AccountsControllerTest_Pass {
+public class AccountsServiceTest {
 	
 	@InjectMocks
 	private AccountsService accountsService;
@@ -38,7 +35,8 @@ public class AccountsControllerTest_Pass {
 	 
 	
 	@Test
-	public void viewAccountListTest() throws Exception {
+	public void viewAccountListTest_Pass() throws Exception {
+		
 		List<AccountsEntity> list = new ArrayList<AccountsEntity>();
 		AccountsEntity account1 = new AccountsEntity();
 		account1.setAccountNumber("585309209");
@@ -75,9 +73,39 @@ public class AccountsControllerTest_Pass {
 		assertEquals(3,accList.size());
 		
 		verify(accountsRepo,times(1)).findAll();
+				
+	}
+	
+	@Test
+	void viewAccountListTest_Fail() throws Exception {
 		
-		//assertNotEquals(3,accList.size());
+		List<AccountsEntity> list = new ArrayList<AccountsEntity>();
+		AccountsEntity account1 = new AccountsEntity();
+		account1.setAccountNumber("585309210");
+		account1.setAccountName("SGSAvings726");
+		account1.setAccountType("Savings");
+		account1.setBalanceDate("08/11/2018");
+		account1.setAvalBalance(84327.51);
+		account1.setCurrency("SGD");
 		
+		AccountsEntity account2 = new AccountsEntity();
+		account2.setAccountNumber("791063819");
+		account2.setAccountName("AUSavings933");
+		account2.setAccountType("Savings");
+		account2.setBalanceDate("08/11/2018");
+		account2.setAvalBalance(88005.93);
+		account2.setCurrency("AUD");
+		
+		list.add(account1);
+		list.add(account2);
+		
+		when(accountsRepo.findAll()).thenReturn(list);
+		
+		List<AccountsEntity> accList = accountsService.viewAccountList();
+		
+		assertNotEquals(2,accList.size());
+		
+		verify(accountsRepo,times(1)).findAll();
 	}
 
 }

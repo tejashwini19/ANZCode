@@ -1,5 +1,4 @@
 package com.infosys.anz.repository;
-
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

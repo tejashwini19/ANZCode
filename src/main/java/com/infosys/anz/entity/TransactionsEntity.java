@@ -1,11 +1,8 @@
 package com.infosys.anz.entity;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name = "TransactionTable")
@@ -14,17 +11,14 @@ public class TransactionsEntity {
 	
 	@Id
 	@GeneratedValue
-	@Column(name = "transactionId", unique = true, nullable = true)
 	private int transactionId;
 	private String accountNumber;
 	private String accountName;
 	private String valueDate;
 	private String currency;
-	@Column(name = "debitAmount", nullable = true)
 	private String debitAmount;
 	private Double creditAmount;
 	private String debitOrCredit;
-	@Column(nullable = true)
 	private String transactionNarrative = "";
 	
 

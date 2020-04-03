@@ -1,5 +1,4 @@
 package com.infosys.anz.controller;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +16,9 @@ public class AccountsController {
 	@Autowired
 	private AccountsService accountsService;
 	
-	
 	@GetMapping(value="/accounts", produces= {"application/json"})
 	public List<AccountsEntity> viewAccountList(){
 		return accountsService.viewAccountList();
 	}
 		  
-
 }

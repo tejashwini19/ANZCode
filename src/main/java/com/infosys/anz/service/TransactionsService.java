@@ -1,8 +1,6 @@
 package com.infosys.anz.service;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.infosys.anz.entity.TransactionsEntity;
@@ -15,7 +13,6 @@ public class TransactionsService {
 	private TransactionsRepository transactionsRepository;
 
 	public List<TransactionsEntity> viewAccountTransactions(String accountNumber) {
-		// TODO Auto-generated method stub
 		
 		List<TransactionsEntity> transactions = new ArrayList<>();
 		transactionsRepository.findByAccountNumber(accountNumber)
